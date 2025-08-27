@@ -72,8 +72,6 @@ x = np.linspace(0, N * L, 40)
 y = np.linspace(0, w, 5)
 x1, y1, z1 = np.meshgrid(x, y, np.linspace(d / 2, d, 30))
 U1, V1, W1 = above_field(x1, z1, int(os.getenv("TERMS")))
-print("Bx: ", U1)
-print("Bz: ", W1)
 x2, y2, z2 = np.meshgrid(x, y, np.linspace(-d / 2, d / 2, 30))
 U2, V2, W2 = inside_field(x2, z2, int(os.getenv("TERMS")))
 
@@ -141,3 +139,6 @@ ax2.quiver(x2[y1 == 0], z2[y1 == 0], U2[y1 == 0], W2[y1 == 0])
 
 plt.tight_layout() # Adjust subplots to fit in figure area
 plt.show()
+# plt.savefig('my_plot.png')
+# plt.savefig('my_plot.png')
+# print("Image saved as 'my_plot.png'")
