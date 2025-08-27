@@ -10,6 +10,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
+import sys
+
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from dotenv import load_dotenv
 from matplotlib.axes import Axes
@@ -40,7 +42,7 @@ def above_field(x, z, terms):
     Bx = np.zeros_like(x)
     Bz = np.zeros_like(x)
     for n in range(1, 2 * terms, 2):
-        c = 2 * m0 * M0 / (n * np.pi) * (np.exp(-n * np.pi / L * (z - L)) - np.exp(-n * np.pi / L * (z + L)))
+        c = 2 * m0 * M0 / (n * np.pi) * (np.exp(-n * np.pi / L * (z - d)) - np.exp(-n * np.pi / L * (z + d)))
         Bx += -c * np.cos(n * np.pi * x / L)
         Bz += c * np.sin(n * np.pi * x / L)
     return (Bx, Bz)
@@ -75,7 +77,7 @@ def below_field(x, z, terms):
     Bx = np.zeros_like(x)
     Bz = np.zeros_like(x)
     for n in range(1, 2 * terms, 2):
-        c = 2 * m0 * M0 / (n * np.pi) * (np.exp(n * np.pi / L * (z - L)) - np.exp(n * np.pi / L * (z + L)))
+        c = 2 * m0 * M0 / (n * np.pi) * (np.exp(n * np.pi / L * (z - d)) - np.exp(n * np.pi / L * (z + d)))
         Bx += -c * np.cos(n * np.pi * x / L)
         Bz += -c * np.sin(n * np.pi * x / L)
     return (Bx, Bz)
@@ -111,13 +113,11 @@ def sample_projection(ax: Axes, unit_domain: NDArray[np.float64], faces: List[Li
     Bx_up, Bz_up = above_field(x_up, z_up, TERMS)
     x_in, z_in = np.meshgrid(np.linspace(0, N * L, 186), np.linspace(-d / 2, d / 2, 20))
     Bx_in, Bz_in = inside_field(x_in, z_in, TERMS)
-    x_d, z_d = np.meshgrid(np.linspace(0, N * L, 186), np.linspace(-3 * d / 2, -d / 2, 10))
-    Bx_d, Bz_d = above_field(x_d, z_d, TERMS)
-    print("Bx_in: ", Bx_in)
-    print("Bz_in: ", Bz_in)
-    print("Bx_d: ", Bx_d)
-    print("Bz_d: ", Bz_d)
-    ax.quiver(x_in, z_in, Bx_in, Bz_in, scale=1.4)
+    x_d, z_d = np.meshgrid(np.linspace(0, N * L, 186), np.linspace(-3 * d / 2, -d / 2, 20))
+    Bx_d, Bz_d = below_field(x_d, z_d, TERMS)
+    # np.set_printoptions(threshold=sys.maxsize)
+    # # print(Bz_d)
+    # ax.quiver(x_in, z_in, Bx_in, Bz_in, scale=1.4)
     ax.quiver(x_d, z_d, Bx_d, Bz_d)
     # ax.quiver(x_up, z_up, Bx_up, Bz_up)
 
@@ -177,8 +177,6 @@ def main():
     ]
 
     fig = plt.figure(figsize=(21, 7))
-    # ax1 = fig.add_subplot(1, 3, 1)
-    # single_domain(ax1, magnetic_unit_domain, xz_faces)
     ax2 = fig.add_subplot(1, 2, 1)
     sample_projection(ax2, magnetic_unit_domain, xz_faces)
     ax3 = fig.add_subplot(1, 2, 2, projection='3d')

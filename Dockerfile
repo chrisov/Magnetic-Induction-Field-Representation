@@ -2,6 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# This command adds a rule that allows connections from the Docker container to your display
+RUN xhost +local:docker
+
 # Install required system dependencies
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends qtbase5-dev
