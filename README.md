@@ -1,5 +1,7 @@
+<div align="center">
+  <img src="logo.jpg" alt="logo" width="200"/>
+</div>
 
-<br>
 <div align="center">
 
 ### 🛠 Python
