@@ -1,4 +1,3 @@
-# SrFe<sub>12</sub>O<sub>19</sub> Magnetic Field B(x,z)
 
 <br>
 <div align="center">
@@ -8,6 +7,8 @@
 
 </div>
 <br>
+
+# SrFe<sub>12</sub>O<sub>19</sub> Magnetic Field B(x,z)
 
 This project plots the magnetic field B(x,z) produced in the space above, below and inside a ferromagnetic rectangular sample (Strodium Hexaferrite) of alternating Magnetization. It works as complementary visualization of my Bachelor thesis 'Μagnetization orientation of a ferromagnet of rectangular cross-section by displacement of its magnetic walls by a constant external magnetic field´. The program utlilizes the formulas developed in the paper to visualize the ferromagnet's magnetic field.
 
