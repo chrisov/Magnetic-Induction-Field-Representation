@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/logo.jpg" alt="logo" width="200"/>
+</div>
 
 <br>
 <div align="center">
@@ -17,7 +20,7 @@ This project plots the magnetic field B(x,z) produced in the space above, below 
 The ferromagnet is of rectangular shape, with dimensions 70 x 10 x 1 (mm) (Fig. 1). It is consisted of magnetic domains of alternating magnetization along its length. More simply said, it is like combining multiple magnets of up, down, up, etc polarity one next to the other, in a one rigid body.
 
 <div align="center">
-  <img src="Fig1.png" alt="Fig.1" width="600"/><br>
+  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/Fig1.png" alt="Fig.1" width="600"/><br>
   Fig. 1: Schematic illustration of the experimental setup, which consists of magnetic domains of width L, of alternating magnetization of constant homogeneous intensity.
 </div>
 <br>
@@ -25,7 +28,7 @@ The ferromagnet is of rectangular shape, with dimensions 70 x 10 x 1 (mm) (Fig. 
 The formulas developed in the thesis, that describe the Magnetic field B(x,z) are the following:
 
 <div align="center">
-  <img src="Fig2.png" alt="Fig.2" width="600"/><br>
+  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/Fig2.png" alt="Fig.2" width="600"/><br>
   Fig. 2: Final results for the magnetic field B(x,z) for every sub-space.
 </div>
 <br>
@@ -38,7 +41,7 @@ The project is developed in a slim python based docker container, which includes
 
 The container runs using the following command
 
-![alt text](image.png)
+![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/image.png)
 
 ## Run
 
