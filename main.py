@@ -10,8 +10,6 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-import sys
-
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from dotenv import load_dotenv
 from matplotlib.axes import Axes
@@ -115,8 +113,6 @@ def sample_projection(ax: Axes, unit_domain: NDArray[np.float64], faces: List[Li
     Bx_in, Bz_in = inside_field(x_in, z_in, TERMS)
     x_d, z_d = np.meshgrid(np.linspace(0, N * L, 186), np.linspace(-3 * d / 2, -d / 2, 20))
     Bx_d, Bz_d = below_field(x_d, z_d, TERMS)
-    # np.set_printoptions(threshold=sys.maxsize)
-    # # print(Bz_d)
     # ax.quiver(x_in, z_in, Bx_in, Bz_in, scale=1.4)
     ax.quiver(x_d, z_d, Bx_d, Bz_d)
     # ax.quiver(x_up, z_up, Bx_up, Bz_up)

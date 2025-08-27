@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/logo.jpg" alt="logo" width="200"/>
+  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/logo.jpg" alt="logo" width="300"/>
 </div>
 
 <br>
@@ -13,7 +13,29 @@
 
 # SrFe<sub>12</sub>O<sub>19</sub> Magnetic Field B(x,z)
 
-This project plots the magnetic field B(x,z) produced in the space above, below and inside a ferromagnetic rectangular sample (Strodium Hexaferrite) of alternating Magnetization. It works as complementary visualization of my Bachelor thesis 'Μagnetization orientation of a ferromagnet of rectangular cross-section by displacement of its magnetic walls by a constant external magnetic field´. The program utlilizes the formulas developed in the paper to visualize the ferromagnet's magnetic field.
+This project works as complementary visualization of my Bachelor thesis 'Μagnetization orientation of a ferromagnet of rectangular cross-section by displacement of its magnetic walls by a constant external magnetic field´. It plots the magnetic field B(x,z) produced in the space above, below and inside a ferromagnetic rectangular sample (Strodium Hexaferrite) of alternating Magnetization. The program utlilizes the formulas developed in the paper to visualize the ferromagnet's magnetic field. It creates a figure with two subplots, one of the XZ projection of the sample, and a 3D one.
+
+## Technical details
+
+- The project utilizes the numpy and Matplotlib libraries in its core, in order to make the necessary calculations, as well as plot the results for the magnetic field B(x,z).
+- There are distinct functions that calculate B, according to the appropriate formula (see Fig. 1)
+- There are distinct functions to plot each subplot in the resulting figure, both painting both the magnetic domains, as well as the vector field B.
+- A brief description of a few key variables follows:
+  - **magnetic_unit_domain (NDArray[np.float64])**: Defines the vertices of a rectangular box, in a 3D coordinate system. Each inner list represents a single vertex (a point in 3D space) with its (x, y, z) coordinates.
+  - **magnetic_domain_faces (List[List[int]])**: Serves as a blueprint to tell the plotting function how to connect the vertices of a shape to form its surfaces. Each inner list represents a single face of the object and the numbers inside each list are indices that correspond to the positions of vertices in a separate array.
+  - **xz_faces (List[List[int]])**: Same as 'magnetic_domain_faces', used to create the projected boxes in the first XZ projection subplot.
+
+## Environment
+
+The project is developed in a slim python based docker container, which includes all the necessary dependencies and tools to run and execute. It is noted that a container being a command-line environment by default (headless environment), cannot natively support an interactive 3D graph because it lacks a graphical display server. However, this functionality is enabled by using X11 forwarding, which allows a container to use the host machine's display to render its graphical output. X11 forwarding creates a secure tunnel between the container and the host's X server, allowing the containerized application to draw its windows on the host's screen.
+
+The container runs using the following command
+
+![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/image.png)
+
+## Run
+
+The program defines a few useful contants, relative to the experimental process conducted during the thesis production, in the .env file. When run, the Qt environmental framework is fully interactive, where it is possilble to traverse through the grid, rotate, and zoom in and out, using the corresponding buttons in the menu on the top.
 
 ## Theory
 
@@ -33,16 +55,4 @@ The formulas developed in the thesis, that describe the Magnetic field B(x,z) ar
 </div>
 <br>
 
-where the indices I, II, III are used to describe the sub-space, below, inside and above the ferromagnet, respectively. It is necessary to mention that the theoretical analysis conducted in the paper, that resulted into the development of the aforementioned formulas considers an ideal sample of infinite y-dimension. What this means, said more simply, is that the visualization is accurate for regions in the respective subspaces that are "far" from any of the sample's borders.
-
-## Environment
-
-The project is developed in a slim python based docker container, which includes all the necessary dependencies and tools to run and execute. It is noted that a container being a command-line environment by default (headless environment), cannot natively support an interactive 3D graph because it lacks a graphical display server. However, this functionality is enabled by using X11 forwarding, which allows a container to use the host machine's display to render its graphical output. X11 forwarding creates a secure tunnel between the container and the host's X server, allowing the containerized application to draw its windows on the host's screen.
-
-The container runs using the following command
-
-![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/image.png)
-
-## Run
-
-The program defines a few useful contants, relative to the experimental process conducted during the thesis production, in the .env file. When run, the Qt environmental framework is fully interactive, where it is possilble to traverse through the grid, rotate, and zoom in and out, using the corresponding buttons in the menu on the top.
+The indices I, II, III are used to describe the sub-space, below, inside and above the ferromagnet, respectively. It is necessary to mention that the theoretical analysis conducted in the paper, that resulted into the development of the aforementioned formulas, considers an ideal sample of infinite y-dimension. What this means, is that the visualization is accurate for regions in the respective subspaces that are "far" from any of the sample's borders.
