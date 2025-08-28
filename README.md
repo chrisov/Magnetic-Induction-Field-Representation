@@ -1,8 +1,7 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/logo.jpg" alt="logo" width="300"/>
+  <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/39133463841233210d71938049d8269b641bcc5e/Logo.png" alt="logo" width="300"/>
 </div>
 
-<br>
 <div align="center">
 
 ### 🛠 Python
