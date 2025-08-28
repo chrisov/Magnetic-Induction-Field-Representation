@@ -113,8 +113,8 @@ def sample_projection(ax: Axes, unit_domain: NDArray[np.float64], faces: List[Li
     Bx_in, Bz_in = inside_field(x_in, z_in, TERMS)
     x_d, z_d = np.meshgrid(np.linspace(0, N * L, 186), np.linspace(-3 * d / 2, -d / 2, 20))
     Bx_d, Bz_d = below_field(x_d, z_d, TERMS)
-    # ax.quiver(x_in, z_in, Bx_in, Bz_in, scale=1.4)
-    ax.quiver(x_d, z_d, Bx_d, Bz_d)
+    ax.quiver(x_in, z_in, Bx_in, Bz_in, scale=1.4)
+    # ax.quiver(x_d, z_d, Bx_d, Bz_d)
     # ax.quiver(x_up, z_up, Bx_up, Bz_up)
 
 

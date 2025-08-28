@@ -13,19 +13,25 @@
 
 # SrFe<sub>12</sub>O<sub>19</sub> Magnetic Field B(x,z)
 
-This project works as complementary visualization of my Bachelor thesis 'Μagnetization orientation of a ferromagnet of rectangular cross-section by displacement of its magnetic walls by a constant external magnetic field´. It plots the magnetic field B(x,z) produced in the space above, below and inside a ferromagnetic rectangular sample (Strodium Hexaferrite) of alternating Magnetization. The program utlilizes the formulas developed in the paper to visualize the ferromagnet's magnetic field. It creates a figure with two subplots, one of the XZ projection of the sample, and a 3D one.
+This project works as complementary visualization of my Bachelor thesis 'Μagnetization orientation of a rectangular ferromagnet, by displacement of its magnetic walls by a constant external magnetic field´. It utlilizes the formulas developed in the paper to visualize the ferromagnet's magnetic field. The program creates a figure with two subplots, one of the XZ projection of the sample, and a 3D one and it plots the magnetic field B(x,z) produced in the space below, inside and above, in an interactive Qt environment.
+
+## Interactive environment
+
+When run, the Qt environmental framework is fully interactive, where it is possilble to traverse through the grid, rotate, zoom in/out and more, using the corresponding buttons in the menu on the top, as shown in the image below.
+
+![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/ce69af2ce0cae1b9dbad89aa9abbcec8e9956095/Example.png)
 
 ## Technical details
 
 - The project utilizes the numpy and Matplotlib libraries in its core, in order to make the necessary calculations, as well as plot the results for the magnetic field B(x,z).
-- There are distinct functions that calculate B, according to the appropriate formula (see Fig. 1)
+- There are distinct functions that calculate B, according to the appropriate formula (see Fig. 2)
 - There are distinct functions to plot each subplot in the resulting figure, both painting both the magnetic domains, as well as the vector field B.
 - A brief description of a few key variables follows:
-  - **magnetic_unit_domain (NDArray[np.float64])**: Defines the vertices of a rectangular box, in a 3D coordinate system. Each inner list represents a single vertex (a point in 3D space) with its (x, y, z) coordinates.
-  - **magnetic_domain_faces (List[List[int]])**: Serves as a blueprint to tell the plotting function how to connect the vertices of a shape to form its surfaces. Each inner list represents a single face of the object and the numbers inside each list are indices that correspond to the positions of vertices in a separate array.
-  - **xz_faces (List[List[int]])**: Same as 'magnetic_domain_faces', used to create the projected boxes in the first XZ projection subplot.
+  - **magnetic_unit_domain** *(NDArray[np.float64])*: Defines the vertices of a rectangular box, in a 3D coordinate system. Each inner list represents a single vertex (a point in 3D space) with its (x, y, z) coordinates.
+  - **magnetic_domain_faces** *(List[List[int]])*: Serves as a blueprint to tell the plotting function how to connect the vertices of a shape to form its surfaces. Each inner list represents a single face of the object and the numbers inside each list are indices that correspond to the positions of vertices in a separate array.
+  - **xz_faces** *(List[List[int]])*: Same as 'magnetic_domain_faces', used to create the projected boxes in the first XZ projection subplot.
 
-## Environment
+## Docker Container
 
 The project is developed in a slim python based docker container, which includes all the necessary dependencies and tools to run and execute. It is noted that a container being a command-line environment by default (headless environment), cannot natively support an interactive 3D graph because it lacks a graphical display server. However, this functionality is enabled by using X11 forwarding, which allows a container to use the host machine's display to render its graphical output. X11 forwarding creates a secure tunnel between the container and the host's X server, allowing the containerized application to draw its windows on the host's screen.
 
@@ -33,9 +39,13 @@ The container runs using the following command
 
 ![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/image.png)
 
-## Run
+## .env
 
-The program defines a few useful contants, relative to the experimental process conducted during the thesis production, in the .env file. When run, the Qt environmental framework is fully interactive, where it is possilble to traverse through the grid, rotate, and zoom in and out, using the corresponding buttons in the menu on the top.
+The program defines a few useful contants, relative to the experimental process conducted during the thesis production, in the .env file. The default values describe the actual values used during the experimental process.
+
+| Picture                | Description       |
+|------------------------|-------------------|
+| ![Alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/74e3bee39d4a95351ebb091e92efa870cf927714/Env.png) | - **N**: The number of magnetic domains the sample consists of.<br> - **TERMS**: The number of Fourier terms used for calculating the magnetic field B (Theory: Fig. 2).<br> - **L**: The sample's length.<br> - **w**: The sample's width.<br> - **d**: The sample's height.|
 
 ## Theory
 
