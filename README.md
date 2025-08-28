@@ -33,27 +33,38 @@ When run, the Qt environmental framework is fully interactive, where it is possi
 
 ## Docker Container
 
-The project is developed in a slim python based docker container, which includes all the necessary dependencies and tools to run and execute. It is noted that a container being a command-line environment by default (headless environment), cannot natively support an interactive 3D graph because it lacks a graphical display server. However, this functionality is enabled by using X11 forwarding, which allows a container to use the host machine's display to render its graphical output. X11 forwarding creates a secure tunnel between the container and the host's X server, allowing the containerized application to draw its windows on the host's screen.
+The project is developed in a slim Python based docker container, which includes all the necessary dependencies and tools to run and execute. It is noted that a container being a command-line environment by default (headless environment), cannot natively support an interactive 3D graph because it lacks a graphical display server. However, this functionality is enabled by using X11 forwarding, which allows a container to use the host machine's display to render its graphical output. X11 forwarding creates a secure tunnel between the container and the host's X server, allowing the containerized application to draw its windows on the host's screen.
 
-The container runs using the following command
+The container runs using the following commands (Linux):
 
-![alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/image.png)
+1. Allow the host's X server to accept graphical connections from a Docker container:
+
+```bash
+xhost +local:docker
+```
+
+2. Run the container:
+
+```bash
+docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix mag:1.0
+```
 
 ## .env
 
-The program defines a few useful contants, relative to the experimental process conducted during the thesis production, in the .env file. The default values describe the actual values used during the experimental process.
+The program defines a few useful contants, relative to the experimental process conducted, during the thesis production, in the .env file. The default values describe the actual values used, during the experimental process.
 
 | Picture                | Description       |
 |------------------------|-------------------|
-| ![Alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/74e3bee39d4a95351ebb091e92efa870cf927714/Env.png) | - **N**: The number of magnetic domains the sample consists of.<br> - **TERMS**: The number of Fourier terms used for calculating the magnetic field B (Theory: Fig. 2).<br> - **L**: The sample's length.<br> - **w**: The sample's width.<br> - **d**: The sample's height.|
+| ![Alt text](https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/74e3bee39d4a95351ebb091e92efa870cf927714/Env.png) | - **N**: The number of magnetic domains the sample consists of.<br> - **TERMS**: The number of Fourier terms used for calculating the magnetic field B (*Theory: Fig. 2*).<br> - **L**: The sample's length.<br> - **w**: The sample's width.<br> - **d**: The sample's height.|
 
 ## Theory
 
-The ferromagnet is of rectangular shape, with dimensions 70 x 10 x 1 (mm) (Fig. 1). It is consisted of magnetic domains of alternating magnetization along its length. More simply said, it is like combining multiple magnets of up, down, up, etc polarity one next to the other, in a one rigid body.
+The ferromagnet is of rectangular shape, with dimensions *70 x 10 x 1 (mm)* (Fig. 1). It is consisted of magnetic domains of alternating magnetization along its length. More simply said, it is like combining multiple magnets of up, down, up, etc polarity one next to the other, in a one rigid body.
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/Fig1.png" alt="Fig.1" width="600"/><br>
-  Fig. 1: Schematic illustration of the experimental setup, which consists of magnetic domains of width L, of alternating magnetization of constant homogeneous intensity.
+  
+  *Fig. 1: Schematic illustration of the experimental setup, which consists of magnetic domains of width L, of alternating magnetization of constant homogeneous intensity.*
 </div>
 <br>
 
@@ -61,7 +72,8 @@ The formulas developed in the thesis, that describe the Magnetic field B(x,z) ar
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/chrisov/Magnetic-Induction-Field-Representation/5b5f98f92a2903e21c18301c463463a015f24419/Fig2.png" alt="Fig.2" width="600"/><br>
-  Fig. 2: Final results for the magnetic field B(x,z) for every sub-space.
+
+  *Fig. 2: Final results for the magnetic field B(x,z) for every sub-space.*
 </div>
 <br>
 

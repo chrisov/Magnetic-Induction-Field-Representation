@@ -3,7 +3,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # This command adds a rule that allows connections from the Docker container to your display
-RUN xhost +local:docker
+# RUN xhost +local:docker
 
 # Install required system dependencies
 RUN apt-get update
@@ -14,6 +14,8 @@ RUN apt-get install -y --no-install-recommends libpng-dev
 RUN apt-get install -y --no-install-recommends gcc
 RUN apt-get install -y --no-install-recommends g++
 RUN apt-get install -y --no-install-recommends make
+
+# X11 forwarding dependencies
 RUN apt-get install -y --no-install-recommends libgl1
 RUN apt-get install -y --no-install-recommends libglx-mesa0
 RUN apt-get install -y --no-install-recommends libglx0
@@ -29,12 +31,12 @@ RUN apt-get install -y --no-install-recommends libxcb-cursor0
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip and install Python dependencies in one step
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir numpy \
-    python-dotenv \
-    matplotlib \
-    PyQt6 
-
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir numpy
+RUN pip install --no-cache-dir matplotlib
+RUN pip install --no-cache-dir python-dotenv
+RUN pip install --no-cache-dir PyQt6 
+    
 # Copy application files
 COPY . .
 
